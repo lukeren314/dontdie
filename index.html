@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="" />
+    <!-- load necessary dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+    <script src="p5.js" type="text/javascript"></script>
+    <script src="addons/p5.dom.js" type="text/javascript"></script>
+    <!-- load utility classes -->
+    <script src="util/collision.js"></script>
+    <!-- load GUI classes -->
+    <script src="guis/gui.js"></script>
+    <script src="guis/backgroundgui.js"></script>
+    <script src="guis/menugui.js"></script>
+    <script src="guis/creategui.js"></script>
+    <script src="guis/selectiongui.js"></script>
+    <script src="guis/mapgui.js"></script>
+    <script src="guis/playergui.js"></script>
+    <script src="guis/tutorialgui.js"></script>
+
+    <!-- load game classes -->
+    <script src="gameClasses/button.js"></script>
+    <script src="gameClasses/player.js"></script>
+    <script src="gameClasses/map.js"></script>
+    <!-- load game scenes -->
+    <script src="scenes/scene.js"></script>
+    <script src="scenes/menuScene.js"></script>
+    <script src="scenes/selectionScene.js"></script>
+    <script src="scenes/lobbyScene.js"></script>
+    <script src="scenes/createScene.js"></script>
+    <script src="scenes/gameScene.js"></script>
+
+    <!-- load necessary game files -->
+    <script src="game.js"></script>
+    <script src="script.js"></script>
+    <script src="gameClient.js"></script>
+  </head>
+  <body>
+    <div id="loading-overlay">
+      <h1 style="text-align:center">Loading...</h1>
+    </div>
+    <div id="menu-scene">
+      <h1 class="title">Don't Die</h1>
+      <div id="register">
+        <p id="register-message">
+          Register
+        </p>
+        <div>
+          Username
+          <input id="register-username" />
+        </div>
+        <div>
+          Password
+          <input id="register-password" />
+        </div>
+        <button
+          id="register-button"
+          onclick="registerAccount_(document.getElementById('register-username').value,document.getElementById('register-password').value)"
+        >
+          Register
+        </button>
+      </div>
+      <div id="login">
+        <p id="login-message">
+          Login
+        </p>
+        <div>
+          Username
+          <input id="login-username" />
+        </div>
+        <div>
+          Password
+          <input id="login-password" />
+        </div>
+        <button
+          id="register-button"
+          onclick="loginAccount_(document.getElementById('login-username').value,document.getElementById('login-password').value)"
+        >
+          Login
+        </button>
+      </div>
+    </div>
+    <div id="selection-scene" style="display:none">
+      <h1 class="title">Servers</h1>
+      <button id="logout-button" onclick="logOut()">Log Out</button>
+      <div id="servers"></div>
+      <button id="refresh-button" onclick="getServers_()">Refresh</button>
+      <button id="create-button" onclick="createServer()">Create Server</button>
+    </div>
+    <div id="create-scene" style="display:none">
+      <h1 class="title">Create Server</h1>
+      <div id="server-info">
+        <h1>Server Name</h1>
+        <input id="server-name" />
+        <h1>Server Password</h1>
+        <input id="server-password" />
+        <button onclick="createServer_()">Create Server!</button>
+        <button onclick="backToSelection()">Back</button>
+      </div>
+    </div>
+    <div id="game-scene" style="display:none">
+      <div id="game-chat">
+        <input id="game-chat-input" />
+        <button id="game-chat-button">Enter</button>
+      </div>
+    </div>
+  </body>
+</html>
